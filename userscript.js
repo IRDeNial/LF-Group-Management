@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LF Group Management Fucking Cunt Script
 // @namespace    https://slut.io
-// @version      0.20
+// @version      0.23
 // @author       Sladey
 // @include      https://leakforums.net/*
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js
@@ -67,4 +67,15 @@ if (url.indexOf('managegroup.php?gid=') > -1) {
     }
   });
   $('form').last().before('<table border="0" cellspacing="0" cellpadding="10" class="tborder"><tbody><tr><td class="thead" colspan="6"><strong>' + y + ' Members</strong></td></tr><tr><td class="trow1"><span>Unformated Member List</br></span><textarea style="height: 165px;width:50%;">' + u + '</textarea></td></tr></tbody></table>');
+}
+
+if (url.indexOf('managegroup.php?action=joinrequests&gid=') > -1) {
+  u = '';
+  $('input[name*="request["][value="decline"]').each(function() {
+    var r;
+    r = $(this).attr('name');
+    r = r.substr(8);
+    return u = u + '[@' + r + '\n';
+  });
+  $('table').after('<table border="0" cellspacing="0" cellpadding="10" class="tborder"><tbody><tr><td class="thead" colspan="6"><strong>Blacklist Generator</strong></td></tr><tr><td class="trow1"><span>Unformated Member List</br></span><textarea style="height: 165px;width:50%;">' + u + '</textarea></td></tr></tbody></table>');
 }
