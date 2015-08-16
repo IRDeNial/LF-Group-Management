@@ -5,8 +5,6 @@
 // @author       Sladey
 // @include      https://leakforums.net/*
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js
-// @downloadURL  https://raw.githubusercontent.com/Stricken/LF-Group-Management/master/userscript.js
-// @updateURL    https://raw.githubusercontent.com/Stricken/LF-Group-Management/master/userscript.js
 // ==/UserScript==
 
 var url = window.location.href;
@@ -21,7 +19,7 @@ if (url.indexOf('managegroup.php?gid=') > -1) {
     return $(':checkbox').prop('checked', this.checked);
   });
   u = '';
-  $('table').first().after('</br><input type="button" style="background: #406932;" class="button" id="goodstanding" value="Good Standing"> <input type="button" style="background: #887E33;" class="button" id="mildstanding" value="Mild Standing"> <input type="button" style="background: #732E2E;" class="button" id="badstanding" value="Bad Standing">');
+  $('table').first().after('</br><input type="button" style="background: #406932;" class="button" id="goodstanding" value="Good Standing"> <input type="button" style="background: #887E33;" class="button" id="mildstanding" value="Mild Standing"> <input type="button" style="background: #732E2E;" class="button" id="badstanding" value="Bad Standing"></br><span style="font-size: 10px;">Script by Sladey\'s left testicle</span>');
   $('#goodstanding').click(function() {
     return $(':checkbox:checked').each(function() {
       var z;
