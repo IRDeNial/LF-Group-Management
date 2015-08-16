@@ -1,10 +1,12 @@
 // ==UserScript==
 // @name         LF Group Management Fucking Cunt Script
 // @namespace    https://slut.io
-// @version      0.18
+// @version      0.20
 // @author       Sladey
 // @include      https://leakforums.net/*
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js
+// @downloadURL  https://raw.githubusercontent.com/Stricken/LF-Group-Management/master/userscript.js
+// @updateURL    https://raw.githubusercontent.com/Stricken/LF-Group-Management/master/userscript.js
 // ==/UserScript==
 
 var url = window.location.href;
