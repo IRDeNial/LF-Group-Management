@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LF Group Management Fucking Cunt Script
 // @namespace    https://slut.io
-// @version      0.23
+// @version      0.31
 // @author       Sladey
 // @include      https://leakforums.net/*
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js
@@ -13,14 +13,15 @@ var url = window.location.href;
 
 
 if (url.indexOf('managegroup.php?gid=') > -1) {
-  y = $('.thead').first().next().text();
-  y = y.substr(11);
-  y = y.replace('"', '');
+  y = $('.thead').first().find('strong').text();
   $('.tcat[width="1"]').append('<input type="checkbox" id="selectAll">');
   $(':checkbox[id="selectAll"]').click(function() {
     return $(':checkbox').prop('checked', this.checked);
   });
   u = '';
+  e = '';
+  n = '';
+  s = '';
   $('table').first().after('</br><input type="button" style="background: #406932;" class="button" id="goodstanding" value="Good Standing"> <input type="button" style="background: #887E33;" class="button" id="mildstanding" value="Mild Standing"> <input type="button" style="background: #732E2E;" class="button" id="badstanding" value="Bad Standing"></br><span style="font-size: 10px;">Script by Sladey\'s left testicle</span>');
   $('#goodstanding').click(function() {
     return $(':checkbox:checked').each(function() {
@@ -53,22 +54,25 @@ if (url.indexOf('managegroup.php?gid=') > -1) {
       if (j !== null) {
         d = localStorage.getItem('group_' + j);
         if (d !== "undefined" || d !== null) {
+          if (d == 1) {
+            $(this).css('background', '#406932');
+            e = e + "[*][@" + j + ']\n';
+          } else if (d == 2) {
+            $(this).css('background', '#887E33');
+            n = n + "[*][@" + j + ']\n';
+          } else if (d == 3) {
+            $(this).css('background', '#732E2E');
+            s = s + "[*][@" + j + ']\n';
+          }
           return $(this).find('td').each(function() {
-            if (d == 1) {
-              return $(this).css('background', '#406932');
-            } else if (d == 2) {
-              return $(this).css('background', '#887E33');
-            } else if (d == 3) {
-              return $(this).css('background', '#732E2E');
-            }
+            return $(this).css('background', 'none');
           });
         }
       }
     }
   });
-  $('form').last().before('<table border="0" cellspacing="0" cellpadding="10" class="tborder"><tbody><tr><td class="thead" colspan="6"><strong>' + y + ' Members</strong></td></tr><tr><td class="trow1"><span>Unformated Member List</br></span><textarea style="height: 165px;width:50%;">' + u + '</textarea></td></tr></tbody></table>');
+  $('form').last().before('<table border="0" cellspacing="0" cellpadding="10" class="tborder"><tbody><tr><td class="thead" colspan="6"><strong>' + y + ' UID List</strong></td></tr><tr><td class="trow1"><span>Unformated Member List</br></span><textarea style="height: 165px;width:48%;">' + u + '</textarea><textarea style="height: 165px;width: 48%;margin-left: 15px;">[color=#61AB48]Good Standing[/color][list]' + e + '[/list]\n[color=#887E33]Mild Standing[/color][list]' + n + '[/list]\n[color=#732E2E]Bad Standing[/color][list]' + s + '[/list]</textarea></td></tr></tbody></table>');
 }
-
 if (url.indexOf('managegroup.php?action=joinrequests&gid=') > -1) {
   u = '';
   $('input[name*="request["][value="decline"]').each(function() {
