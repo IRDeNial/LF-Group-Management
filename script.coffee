@@ -10,40 +10,56 @@ if url.indexOf('managegroup.php?gid=') > -1
   n = ''
   s = ''
 
+  setShit = (uid, n) ->
+    localStorage.setItem('group_'+uid, n)
+
+  formatUsername = (u, j) ->
+    return u + "[*][@" + j + ']\n'
+
+  checkboxShit = (u) ->
+    $(':checkbox:checked').each ->
+      z = $(this).val()
+      setShit z, u 
+
   $('table').first().after('</br><input type="button" style="background: #406932;" class="button" id="goodstanding" value="Good Standing"> <input type="button" style="background: #887E33;" class="button" id="mildstanding" value="Mild Standing"> <input type="button" style="background: #732E2E;" class="button" id="badstanding" value="Bad Standing"></br><span style="font-size: 10px;">Script by Sladey\'s left testicle</span>')
   $('#goodstanding').click ->
-    $(':checkbox:checked').each ->
-      z = $(this).val()
-      localStorage.setItem('group_'+z, 1)
+    checkboxShit 1
   $('#mildstanding').click ->
-    $(':checkbox:checked').each ->
-      z = $(this).val()
-      localStorage.setItem('group_'+z, 2)
+    checkboxShit 2
   $('#badstanding').click ->
-    $(':checkbox:checked').each ->
-      z = $(this).val()
-      localStorage.setItem('group_'+z, 3)  
+    checkboxShit 3 
 
   $('table > tbody  > tr').each ->
-    m = $(this).find('td')
+    m = $(this).find('td:first:not(:contains("Leader"))')
     j = $(m).find('a').attr('href')
-    if($.trim(j) != '')
+    if $.trim(j) != '' && j?
       j = j.substr(2)
       u = u + "[@" + j + ']\n'
-      if j != null
-        d = localStorage.getItem('group_'+j)
-        if d != "undefined" || d != null
-          if `d == 1`
-            $(this).css('background', '#406932')
-            e = e + "[*][@" + j + ']\n'
-          else if `d == 2`
-            $(this).css('background', '#887E33')
-            n = n + "[*][@" + j + ']\n'
-          else if `d == 3`
-            $(this).css('background', '#732E2E')
-            s = s + "[*][@" + j + ']\n'
+      d = localStorage.getItem('group_'+j)
+      if `d == 1`
+        $(this).css('background', '#406932')
+        e = formatUsername e, j
+      else if `d == 2`
+        $(this).css('background', '#887E33')
+        n = formatUsername n, j
+      else if `d == 3`
+        $(this).css('background', '#732E2E')
+        s = formatUsername s, j
 
-          $(this).find('td').each ->
-            $(this).css('background', 'none')
+      $(this).find('td').each ->
+        $(this).css('background', 'none')
 
   $('form').last().before('<table border="0" cellspacing="0" cellpadding="10" class="tborder"><tbody><tr><td class="thead" colspan="6"><strong>'+y+' UID List</strong></td></tr><tr><td class="trow1"><span>Unformated Member List</br></span><textarea style="height: 165px;width:48%;">'+u+'</textarea><textarea style="height: 165px;width: 48%;margin-left: 15px;">[color=#61AB48]Good Standing[/color][list]'+e+'[/list]\n[color=#887E33]Mild Standing[/color][list]'+n+'[/list]\n[color=#732E2E]Bad Standing[/color][list]'+s+'[/list]</textarea></td></tr></tbody></table>')
+
+if url.indexOf('managegroup.php?action=joinrequests&gid=') >-1
+  u = ''
+  $('#removeall').click ->
+    $('input[value="decline"]').each ->
+      $(this).click()
+  $('input[value="decline"]').each ->
+    r = $(this).attr('name')
+    r = r.substr(8)
+    u = u + '[@' + r + '\n'
+
+
+  $('table').after('<table border="0" cellspacing="0" cellpadding="10" class="tborder"><tbody><tr><td class="thead" colspan="6"><strong>Blacklist Generator</strong></td></tr><tr><td class="trow1"><span>Unformated Member List</br></span><textarea style="height: 165px;width:50%;">'+u+'</textarea></td></tr></tbody></table><input type="button" style="background: #406932;" class="button" id="removeall" value="Remove all">')
