@@ -14,7 +14,7 @@
 
 	url = window.location.href;
 
-	if (url.indexOf('managegroup.php?gid=') != -1) {
+	if (url.indexOf('managegroup.php?gid=') !== -1) {
 	  y = $('.thead').first().find('strong').text();
 	  $('.tcat[width="1"]').append('<input type="checkbox" id="selectAll">');
 	  $(':checkbox[id="selectAll"]').click(function() {
@@ -73,7 +73,7 @@
 	  $('form').last().before('<table border="0" cellspacing="0" cellpadding="10" class="tborder"><tbody><tr><td class="thead" colspan="6"><strong>' + y + ' UID List</strong></td></tr><tr><td class="trow1"><span>Unformated Member List</br></span><textarea style="height: 165px;width:48%;">' + u + '</textarea><textarea style="height: 165px;width: 48%;margin-left: 15px;">[color=#61AB48]Good Standing[/color][list]' + e + '[/list]\n[color=#887E33]Mild Standing[/color][list]' + n + '[/list]\n[color=#732E2E]Bad Standing[/color][list]' + s + '[/list]</textarea></td></tr></tbody></table>');
 	}
 
-	if (url.indexOf('managegroup.php?action=joinrequests&gid=') != -1) {
+	if (url.indexOf('managegroup.php?action=joinrequests&gid=') !== -1) {
 	  u = '';
 	  $('#removeall').click(function() {
 	    return $('input[value="decline"]').each(function() {
