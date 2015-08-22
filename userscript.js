@@ -10,8 +10,9 @@
 // ==/UserScript==
 
 (function($){
+	var url, y, u, e, n, s, setShit, formatUsername, checkboxShit;
 
-var url = window.location.href;
+	url = window.location.href;
 
 	if (url.indexOf('managegroup.php?gid=') != -1) {
 	  y = $('.thead').first().find('strong').text();
