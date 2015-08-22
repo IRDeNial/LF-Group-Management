@@ -31,7 +31,7 @@
 	    return u + "[*][@" + j + ']\n';
 	  };
 	  checkboxShit = function(u) {
-	    return $(':checkbox:checked').each(function() {
+	    return $('input[type="checkbox"]:checked').each(function() {
 	      var z;
 	      z = $(this).val();
 	      return setShit(z, u);
@@ -49,7 +49,7 @@
 	  });
 	  $('table > tbody  > tr').each(function() {
 	    var d, j, m;
-	    m = $(this).find('td:first:not(:contains("Leader"))');
+	    m = $(this).find('td:nth(0):not(:contains("Leader"))');
 	    j = $(m).find('a').attr('href');
 	    if ($.trim(j) !== '' && (j != null)) {
 	      j = j.substr(2);
